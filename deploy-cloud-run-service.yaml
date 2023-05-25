@@ -1,0 +1,25 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    script: |
+      docker build -f team_league/service/Dockerfile -t $SERVICE_NAME .
+      docker tag $SERVICE_NAME $LOCATION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$SERVICE_NAME:$IMAGE_TAG
+      docker push $LOCATION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$SERVICE_NAME:$IMAGE_TAG
+    env:
+      - 'PROJECT_ID=$PROJECT_ID'
+      - 'LOCATION=$LOCATION'
+      - 'REPO_NAME=$_REPO_NAME'
+      - 'SERVICE_NAME=$_SERVICE_NAME'
+      - 'IMAGE_TAG=$_IMAGE_TAG'
+  - name: google/cloud-sdk:429.0.0
+    args: [ './scripts/deploy_cloud_run_service.sh' ]
+    env:
+      - 'PROJECT_ID=$PROJECT_ID'
+      - 'LOCATION=$LOCATION'
+      - 'REPO_NAME=$_REPO_NAME'
+      - 'SERVICE_NAME=$_SERVICE_NAME'
+      - 'IMAGE_TAG=$_IMAGE_TAG'
+      - 'OUTPUT_DATASET=$_OUTPUT_DATASET'
+      - 'OUTPUT_TABLE=$_OUTPUT_TABLE'
+      - 'INPUT_BUCKET=$_INPUT_BUCKET'
+      - 'INPUT_OBJECT=$_INPUT_OBJECT'
+
