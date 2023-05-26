@@ -9,6 +9,7 @@ echo "############# Deploying the Cloud Run service $SERVICE_NAME"
 gcloud run deploy "$SERVICE_NAME" \
   --image "$LOCATION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$SERVICE_NAME:$IMAGE_TAG" \
   --region="$LOCATION" \
+  --allow-unauthenticated \
   --set-env-vars PROJECT_ID="$PROJECT_ID" \
   --set-env-vars OUTPUT_DATASET="$OUTPUT_DATASET" \
   --set-env-vars OUTPUT_TABLE="$OUTPUT_TABLE" \

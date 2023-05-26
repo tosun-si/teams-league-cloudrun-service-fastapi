@@ -35,13 +35,28 @@ gcloud run deploy ${SERVICE_NAME} \
   --region=${LOCATION}
 ```
 
-The same with the yaml file :
-`
+Execution from a local machine with a Cloud Build yaml file :
+
 ```bash
 gcloud builds submit \
     --project=$PROJECT_ID \
     --region=$LOCATION \
     --config deploy-cloud-run-service.yaml \
-    --substitutions _REPO_NAME="internal-images",_SERVICE_NAME="$SERVICE_NAME",_IMAGE_TAG="$IMAGE_TAG",_OUTPUT_DATASET="$OUTPUT_DATASET",_OUTPUT_TABLE="$OUTPUT_TABLE",_INPUT_BUCKET="$INPUT_BUCKET",_INPUT_OBJECT="$INPUT_OBJECT" \
+    --substitutions _REPO_NAME="$REPO_NAME",_SERVICE_NAME="$SERVICE_NAME",_IMAGE_TAG="$IMAGE_TAG",_OUTPUT_DATASET="$OUTPUT_DATASET",_OUTPUT_TABLE="$OUTPUT_TABLE",_INPUT_BUCKET="$INPUT_BUCKET",_INPUT_OBJECT="$INPUT_OBJECT" \
     --verbosity="debug" .
+```
+
+Execution with a Cloud Build manual trigger :
+
+```bash
+gcloud beta builds triggers create manual \
+    --project=$PROJECT_ID \
+    --region=$LOCATION \
+    --name="deploy-cloud-run-service-team-league" \
+    --repo="https://github.com/tosun-si/teams-league-cloudrun-service-fastapi" \
+    --repo-type="GITHUB" \
+    --branch="main" \
+    --build-config="deploy-cloud-run-service.yaml" \
+    --substitutions _REPO_NAME="$REPO_NAME",_SERVICE_NAME="$SERVICE_NAME",_IMAGE_TAG="$IMAGE_TAG",_OUTPUT_DATASET="$OUTPUT_DATASET",_OUTPUT_TABLE="$OUTPUT_TABLE",_INPUT_BUCKET="$INPUT_BUCKET",_INPUT_OBJECT="$INPUT_OBJECT" \
+    --verbosity="debug"
 ```
