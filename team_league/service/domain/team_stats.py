@@ -1,17 +1,12 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, replace
-from typing import List
+from typing import List, Dict
 
 from team_league.service.domain.team_best_passer_stats import TeamBestPasserStats
 from team_league.service.domain.team_scorer_raw import TeamScorerRaw
 from team_league.service.domain.team_stats_raw import TeamStatsRaw
 from team_league.service.domain.team_top_scorer_stats import TeamTopScorerStats
-
-TEAM_SLOGANS = {
-    "PSG": "Paris est magique",
-    "Real": "Hala Madrid"
-}
 
 
 @dataclass
@@ -53,8 +48,8 @@ class TeamStats:
             bestPasserStats=best_passer_stats
         )
 
-    def add_slogan_to_stats(self) -> TeamStats:
-        team_slogan: str = TEAM_SLOGANS.get(self.teamName)
+    def add_slogan_to_stats(self, slogans: Dict) -> TeamStats:
+        team_slogan: str = slogans.get(self.teamName)
 
         if team_slogan is None:
             raise AttributeError(f'No slogan for team : {team_slogan}')

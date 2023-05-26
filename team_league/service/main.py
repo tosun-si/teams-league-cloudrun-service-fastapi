@@ -34,12 +34,16 @@ def deserialize(team_stats_raw_as_dict: Dict) -> TeamStatsRaw:
     )
 
 
+class Request(BaseModel):
+    team_slogans: Dict
+
+
 class Response(BaseModel):
     message: str
 
 
-@app.post('/load_and_transform_team_stats_to_bq_service')
-async def load_and_transform_team_stats_to_bq_service():
+@app.post('/teams/statistics')
+async def teams_league_service(request: Request):
     project_id = os.environ.get('PROJECT_ID', 'PROJECT_ID env var is not set.')
     output_dataset = os.environ.get('OUTPUT_DATASET', 'OUTPUT_DATASET env var is not set.')
     output_table = os.environ.get('OUTPUT_TABLE', 'OUTPUT_TABLE env var is not set.')
@@ -60,6 +64,7 @@ async def load_and_transform_team_stats_to_bq_service():
         map(lambda team_stats_bytes: json.loads(team_stats_bytes.decode('utf-8'))),
         map(deserialize),
         map(TeamStats.compute_team_stats),
+        map(lambda team_stats: team_stats.add_slogan_to_stats(request.team_slogans)),
         map(dataclasses.asdict),
         map(add_ingestion_date_to_team_stats)
     ))
