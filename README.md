@@ -1,14 +1,10 @@
-# teams-league-airflow-elt
+# teams-league-cloudrun-service-fastapi
 
-This project shows a real world use case with ELT pipeline using Cloud Storage, BigQuery, Airflow and Cloud Composer
-
-The link to the video : 
-
-https://youtu.be/XT-xdEtN0dA
+Project showing a complete use case with a Cloud Run Service written with a Python module and multiple files. The deployment of service is done with FastApi and Uvicorn.
 
 The link to the article :
 
-https://medium.com/@mazlum.tosun/elt-batch-pipeline-with-cloud-storage-bigquery-orchestrated-by-airflow-composer-8bbfc80bf171
+https://medium.com/@mazlum.tosun/cloud-run-service-with-a-python-module-fastapi-and-uvicorn-24c94090a008
 
 ## Build the container for Cloud Run Service with Cloud Build
 
