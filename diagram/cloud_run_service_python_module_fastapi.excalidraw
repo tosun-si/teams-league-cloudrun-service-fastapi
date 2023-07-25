@@ -5809,8 +5809,8 @@
     },
     {
       "type": "text",
-      "version": 371,
-      "versionNonce": 586797730,
+      "version": 373,
+      "versionNonce": 157604962,
       "isDeleted": false,
       "id": "yVJbEAMeyUChvz13zxuzQ",
       "fillStyle": "hachure",
@@ -5823,24 +5823,24 @@
       "y": 280,
       "strokeColor": "#000000",
       "backgroundColor": "transparent",
-      "width": 97,
-      "height": 26,
+      "width": 85,
+      "height": 27,
       "seed": 1604023266,
       "groupIds": [
         "g76EPrL2_q_CYyndS6XS_"
       ],
       "strokeSharpness": "round",
       "boundElements": [],
-      "updated": 1684965740491,
+      "updated": 1685398720140,
       "link": null,
       "fontSize": 23.333333333333336,
       "fontFamily": 2,
-      "text": "DeveOps",
-      "baseline": 21,
+      "text": "DevOps",
+      "baseline": 22,
       "textAlign": "left",
       "verticalAlign": "top",
       "containerId": null,
-      "originalText": "DeveOps"
+      "originalText": "DevOps"
     },
     {
       "type": "rectangle",

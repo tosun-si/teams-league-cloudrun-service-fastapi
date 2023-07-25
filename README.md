@@ -6,6 +6,14 @@ The link to the article :
 
 https://medium.com/@mazlum.tosun/cloud-run-service-with-a-python-module-fastapi-and-uvicorn-24c94090a008
 
+The video in English :
+
+https://youtu.be/rNVDnqpmpIU
+
+The video in French :
+
+https://youtu.be/MJ8WfgnE-wo
+
 ## Build the container for Cloud Run Service with Cloud Build
 
 Update `GCloud CLI` :
