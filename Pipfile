@@ -4,15 +4,15 @@ verify_ssl = true
 name = "pypi"
 
 [dev-packages]
-pytest = "==6.1.2"
+pytest = "==8.4.0"
 
 [packages]
-google-cloud-storage = "==2.9.0"
-google-cloud-bigquery = "==3.5.0"
-fastapi = "==0.95.2"
-uvicorn = "==0.22.0"
-dacite = "==1.6.0"
-toolz = "==0.12.0"
+google-cloud-storage = "==3.1.0"
+google-cloud-bigquery = "==3.34.0"
+fastapi = "==0.115.12"
+uvicorn = "==0.34.3"
+dacite = "==1.9.2"
+toolz = "==1.0.0"
 
 [requires]
-python_version = "3.8"
+python_version = "3.11"
