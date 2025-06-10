@@ -55,6 +55,22 @@ docker tag $SERVICE_NAME $LOCATION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$SERVIC
 docker push $LOCATION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$SERVICE_NAME:$IMAGE_TAG
 ```
 
+Be careful: Cloud Run supports only AMD (x86_64) architecture. 
+If you're building the Dockerfile locally on an ARM-based machine, such as an M1 to M4 MacBook, 
+the build won't work natively. In this case, you need to emulate an AMD environment during the build.
+
+For AMD-based machines, the build commands work directly without any additional configuration.
+
+In ARM architecture, you can emulate the AMD platform with Buildx:
+
+```bash
+docker buildx build \
+    --platform linux/amd64 \
+    -f team_league/service/Dockerfile \
+    -t $LOCATION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$SERVICE_NAME:$IMAGE_TAG \
+    --push .
+```
+
 ### Deploy the Cloud Run service locally, based in the image published previously
 
 ```bash
