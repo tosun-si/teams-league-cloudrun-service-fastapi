@@ -94,3 +94,18 @@ gcloud beta builds triggers create manual \
     --substitutions _REPO_NAME="$REPO_NAME",_SERVICE_NAME="$SERVICE_NAME",_IMAGE_TAG="$IMAGE_TAG",_OUTPUT_DATASET="$OUTPUT_DATASET",_OUTPUT_TABLE="$OUTPUT_TABLE",_INPUT_BUCKET="$INPUT_BUCKET",_INPUT_OBJECT="$INPUT_OBJECT" \
     --verbosity="debug"
 ```
+
+The command line for automatic trigger on main + feature branches is:
+
+```bash
+gcloud builds triggers create github \
+    --name=deploy-cloud-run-service-team-league-auto \
+    --region=europe-west1 \
+    --repo-name=teams-league-cloudrun-service-fastapi \
+    --repo-owner=tosun-si \
+    --branch-pattern='^(main|feature.*)$' \
+    --build-config="deploy-cloud-run-service.yaml" \
+    --substitutions _REPO_NAME="$REPO_NAME",_SERVICE_NAME="$SERVICE_NAME",_IMAGE_TAG="$IMAGE_TAG",_OUTPUT_DATASET="$OUTPUT_DATASET",_OUTPUT_TABLE="$OUTPUT_TABLE",_INPUT_BUCKET="$INPUT_BUCKET",_INPUT_OBJECT="$INPUT_OBJECT" \
+    --require-approval \
+    --include-logs-with-status
+```
